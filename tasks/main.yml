@@ -1,0 +1,17 @@
+---
+- name: add repository
+  become: yes
+  become_user: root
+  template:
+    dest: /etc/apt/sources.list.d/mongodb-org-3.2.list
+    src: files/repo.list
+
+- name: install repository key
+  become: yes
+  become_user: root
+  command: apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927
+
+- name: install mongodb
+  package:
+    name: mongodb-org
+    update_cache: yes
