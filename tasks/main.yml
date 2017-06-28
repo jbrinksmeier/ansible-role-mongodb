@@ -3,13 +3,8 @@
   become: yes
   become_user: root
   template:
-    dest: /etc/apt/sources.list.d/mongodb-org-3.2.list
+    dest: /etc/yum.repos.d/mongodb-org.repo
     src: files/repo.list
-
-- name: install repository key
-  become: yes
-  become_user: root
-  command: apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927
 
 - name: install mongodb
   package:
